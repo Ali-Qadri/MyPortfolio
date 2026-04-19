@@ -2,29 +2,36 @@
 
 export default function Hero() {
   return (
-    <section className="w-full min-h-screen flex flex-col items-center justify-center px-6 text-center">
-
-      <h1
-        style={{
-          fontSize: 'clamp(4rem, 13vw, 14rem)',
-          fontWeight: 900,
-          lineHeight: 0.9,
-          letterSpacing: '-0.04em',
-          textTransform: 'uppercase',
-          color: '#fff',
-        }}
-      >
+    <section style={{
+      width: '100%',
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '6rem 1.5rem 3rem',
+      textAlign: 'center',
+    }}>
+      <h1 style={{
+        fontSize: 'clamp(3rem, 13vw, 14rem)',
+        fontWeight: 900,
+        lineHeight: 0.9,
+        letterSpacing: '-0.04em',
+        textTransform: 'uppercase',
+        color: '#fff',
+      }}>
         Hi, I am a<br />Web Designer
       </h1>
 
       <p style={{
         marginTop: '2.5rem',
-        fontSize: '0.85rem',
+        fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)',
         color: '#555',
-        letterSpacing: '0.2em',
+        letterSpacing: '0.15em',
         textTransform: 'uppercase',
         fontFamily: 'monospace',
         maxWidth: '400px',
+        lineHeight: 1.8,
       }}>
         Specialized in clean & modern websites —
         2 years in the industry
@@ -55,7 +62,6 @@ export default function Hero() {
       >
         View Work
       </button>
-
     </section>
   );
 }

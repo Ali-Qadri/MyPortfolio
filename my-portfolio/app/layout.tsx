@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Preloader from '@/app/components/Preloader';
+import Navbar from '@/app/components/Navbar';
 import PhotoReveal from '@/app/effects/DraggablePhoto';
+import SmoothScroll from '@/app/components/SmoothScroll';
 
 
 const geistSans = Geist({
@@ -30,7 +32,10 @@ export default function RootLayout({
       <body className="bg-[#0E0E0E] text-white">
        
         <Preloader />
+        
+        <Navbar />
         {children}
+        
       </body>
     </html>
   )
