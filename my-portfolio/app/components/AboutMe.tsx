@@ -2,12 +2,12 @@
 
 export default function AboutMe() {
   const resume = {
-    expertise: ['Prototyping Tools', 'WCAG', 'Accessibility', 'User Research', 'Visual Design', 'Responsive Design'],
     education: [
       { degree: 'Bachelors in Computer Science', institution: 'Iqra University', period: '2023 - 2027' },
       { degree: 'Diploma in IT', institution: 'Aptech Pakistan', period: '2021 - 2024' }
     ],
-    skills: ['Communication', 'Programming Basics', 'Motion Design (Framer)', 'Problem Solving']
+    skills: ['Communication', 'Programming Basics', 'Motion Design (Framer)', 'Problem Solving'],
+    tools: ['Framer', 'Wordpress', 'Figma', "Wix", "Vibecoding"]
   };
 
   return (
@@ -28,7 +28,7 @@ export default function AboutMe() {
       }}>
         {/* Left Column: Education */}
         <div>
-           <div style={{ position: 'relative', marginBottom: '6rem' }}>
+          <div style={{ position: 'relative', marginBottom: '6rem' }}>
             <span style={{
               fontSize: 'clamp(8rem, 15vw, 15rem)',
               fontFamily: 'var(--font-body)',
@@ -43,12 +43,12 @@ export default function AboutMe() {
             }}>01</span>
             <h2 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', position: 'relative', zIndex: 1, color: '#fff' }}>Education</h2>
           </div>
-          
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
             {resume.education.map((edu, i) => (
               <div key={i}>
                 <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--accent)', marginBottom: '1rem' }}>{edu.period}</p>
-                <h3 style={{ fontSize: '1.8rem', marginBottom: '0.75rem', color: '#fff', fontWeight: 500 }}>{edu.degree}</h3>
+                <h3 style={{ fontSize: '1.8rem', marginBottom: '0.75rem', color: '#fff', fontWeight: 400 }}>{edu.degree}</h3>
                 <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontStyle: 'italic', fontFamily: 'var(--font-heading)' }}>{edu.institution}</p>
               </div>
             ))}
@@ -57,7 +57,7 @@ export default function AboutMe() {
 
         {/* Right Column: Expertise & Skills */}
         <div>
-           <div style={{ position: 'relative', marginBottom: '6rem' }}>
+          <div style={{ position: 'relative', marginBottom: '6rem' }}>
             <span style={{
               fontSize: 'clamp(8rem, 15vw, 15rem)',
               fontFamily: 'var(--font-body)',
@@ -77,17 +77,6 @@ export default function AboutMe() {
             <div>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '2rem', letterSpacing: '0.1em' }}>Core Expertise</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                {resume.expertise.map(item => (
-                  <div key={item} style={{ fontSize: '1.1rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <span style={{ color: 'var(--accent)' }}>/</span> {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '2rem', letterSpacing: '0.1em' }}>Technical Stack</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
                 {resume.skills.map(item => (
                   <div key={item} style={{ fontSize: '1.1rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                     <span style={{ color: 'var(--accent)' }}>/</span> {item}
@@ -95,6 +84,20 @@ export default function AboutMe() {
                 ))}
               </div>
             </div>
+
+
+
+            <div>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '2rem', letterSpacing: '0.1em' }}>Technical Stack</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                {resume.tools.map(item => (
+                  <div key={item} style={{ fontSize: '1.1rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                    <span style={{ color: 'var(--accent)' }}>/</span> {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

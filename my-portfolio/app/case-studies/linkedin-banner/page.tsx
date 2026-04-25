@@ -12,7 +12,7 @@ export default function NocodeLatCaseStudy() {
       <div style={{ padding: '6rem 3rem 2rem 3rem' }}>
         <button
           onClick={() => router.back()}
-          style={{ background: 'transparent', border: 'none', color: '#949494', fontFamily: 'monospace', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', padding: 0 }}
+          style={{ background: 'transparent', border: 'none', color: '#949494', fontFamily: 'var(--font-body)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', padding: 0 }}
           onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
           onMouseLeave={e => (e.currentTarget.style.color = '#444')}
         >
@@ -21,10 +21,10 @@ export default function NocodeLatCaseStudy() {
       </div>
 
       <div style={{ padding: '4rem 3rem 6rem', borderBottom: '1px solid #1a1a1a' }}>
-        <p style={{ fontFamily: 'monospace', fontSize: '0.7rem', letterSpacing: '0.2em', color: '#949494', textTransform: 'uppercase', marginBottom: '2rem' }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.7rem', letterSpacing: '0.2em', color: '#949494', textTransform: 'uppercase', marginBottom: '2rem' }}>
           02 — LinkedIn Banner Design
         </p>
-        <h1 style={{ fontSize: 'clamp(4rem, 12vw, 11rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.9, textTransform: 'uppercase', marginBottom: '3rem' }}>
+        <h1 style={{ fontSize: 'clamp(4rem, 12vw, 11rem)', fontWeight: 300, letterSpacing: '-0.01em', lineHeight: 0.9, textTransform: 'uppercase', marginBottom: '3rem' }}>
           Linkedin Banner<br />For Rik Basi
         </h1>
         <div style={{ display: 'flex', gap: '4rem', flexWrap: 'wrap', marginTop: '3rem' }}>
@@ -45,11 +45,11 @@ export default function NocodeLatCaseStudy() {
       <ImageCarousel />
 
       <div style={{ maxWidth: '780px', margin: '0 auto', padding: '6rem 3rem' }}>
-        <ContentRow label="Introduction" content="Hey, I'm Ali Qadri — a web designer and developer with over 2 years of experience. I mostly build websites for consultant creators and small businesses. A friend reached out to help with his community, NoCode.Lat, which has over 400 members on Discord. The founder, Sebastian Bimbi, brought me on to help grow the community and increase its reach." />
-        <ContentRow label="The Problem" content="The Discord community was pretty quiet and needed a spark. Even though there were 400+ members, there wasn't much talking going on. It needed a way to feel alive again." />
-        <ContentRow label="The Goal" content="The main goal was to build brand awareness among no-code developers and get them into the NoCode.Lat community through a new website." />
-        <ContentRow label="The Process" content={"After collecting all information and brand assets from Sebastian, I documented the full project scope in Figma and researched the target audience.\n\nI went through competitor websites, analyzed their content and design, and collected 10+ designs — spending a week studying them.\n\nAlongside the website work, I also improved their Discord community — adding important channels, roles, and bots to make it feel active and organized."} />
-        <ContentRow label="Concepts" content="I designed multiple concepts for Sebastian to choose from — going fully from light mode to dark mode variations. The client loved the dark mode concepts and wanted to proceed with that direction." />
+        <ContentRow label="Introduction" content="Hey, I’m Ali, a web designer and developer. I mostly work with creators and small teams to design clean, simple websites that actually make sense. I worked with a biotech marketer who wanted to improve how they present their work online. Their goal was to build a stronger personal brand and attract the right kind of clients through a focused website." />
+        <ContentRow label="The Problem" content="The LinkedIn profile didn’t have a strong first impression. There was no clear visual identity, and the message wasn’t obvious at a glance. Anyone visiting the profile wouldn’t immediately understand what they do or who they help. It needed clarity and a more structured presentation." />
+        <ContentRow label="The Goal" content="The goal was to design a banner that clearly communicates their role, niche, and value. All within a simple layout. It also needed to feel clean, professional, and aligned with the biotech space." />
+        <ContentRow label="The Process" content={"I started by understanding their work and how they position themselves. Then I looked at other strong LinkedIn profiles, especially in biotech and consulting, to see how they communicate visually. After that, I explored different layout ideas, focusing on strong headlines, minimal text, and proper spacing. The idea was to make the message clear within a few seconds, without overloading the design. I kept the design simple, balanced, and easy to read so it works well across different screen sizes."} />
+        <ContentRow label="Concepts" content="The final banner made the profile feel more clear and professional. Now, when someone visits the profile, they can quickly understand what the person does and who they help. It creates a stronger first impression and supports their personal brand in a simple, effective way." />
       </div>
 
 
@@ -66,7 +66,7 @@ export default function NocodeLatCaseStudy() {
 function ContentRow({ label, content }: { label: string; content: string }) {
   return (
     <div style={{ marginBottom: '4rem', display: 'grid', gridTemplateColumns: '160px 1fr', gap: '2rem' }}>
-      <p style={{ fontFamily: 'monospace', fontSize: '0.65rem', color: '#949494', letterSpacing: '0.15em', textTransform: 'uppercase', paddingTop: '4px' }}>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.65rem', color: '#949494', letterSpacing: '0.15em', textTransform: 'uppercase', paddingTop: '4px' }}>
         {label}
       </p>
       <p style={{ fontSize: '1rem', lineHeight: 1.8, color: '#888', whiteSpace: 'pre-line' }}>

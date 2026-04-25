@@ -12,7 +12,7 @@ export default function NocodeLatCaseStudy() {
       <div style={{ padding: '6rem 3rem 2rem 3rem' }}>
         <button
           onClick={() => router.back()}
-          style={{ background: 'transparent', border: 'none', color: '#949494', fontFamily: 'monospace', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', padding: 0 }}
+          style={{ background: 'transparent', border: 'none', color: '#949494', fontFamily: 'var(--font-body)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', padding: 0 }}
           onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
           onMouseLeave={e => (e.currentTarget.style.color = '#444')}
         >
@@ -21,10 +21,10 @@ export default function NocodeLatCaseStudy() {
       </div>
 
       <div style={{ padding: '4rem 3rem 6rem', borderBottom: '1px solid #1a1a1a' }}>
-        <p style={{ fontFamily: 'monospace', fontSize: '0.7rem', letterSpacing: '0.2em', color: '#949494', textTransform: 'uppercase', marginBottom: '2rem' }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.7rem', letterSpacing: '0.2em', color: '#949494', textTransform: 'uppercase', marginBottom: '2rem' }}>
           01 — Website Design & Community Growth
         </p>
-        <h1 style={{ fontSize: 'clamp(4rem, 12vw, 11rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.9, textTransform: 'uppercase', marginBottom: '3rem' }}>
+        <h1 style={{ fontSize: 'clamp(4rem, 12vw, 11rem)', fontWeight: 300, letterSpacing: '-0.01em', lineHeight: 0.9, textTransform: 'uppercase', marginBottom: '3rem' }}>
           Website design concept for nocode lat
         </h1>
         <div style={{ display: 'flex', gap: '4rem', flexWrap: 'wrap', marginTop: '3rem' }}>
@@ -66,7 +66,7 @@ export default function NocodeLatCaseStudy() {
 function ContentRow({ label, content }: { label: string; content: string }) {
   return (
     <div style={{ marginBottom: '4rem', display: 'grid', gridTemplateColumns: '160px 1fr', gap: '2rem' }}>
-      <p style={{ fontFamily: 'monospace', fontSize: '0.65rem', color: '#949494', letterSpacing: '0.15em', textTransform: 'uppercase', paddingTop: '4px' }}>
+      <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.65rem', color: '#949494', letterSpacing: '0.15em', textTransform: 'uppercase', paddingTop: '4px' }}>
         {label}
       </p>
       <p style={{ fontSize: '1rem', lineHeight: 1.8, color: '#888', whiteSpace: 'pre-line' }}>

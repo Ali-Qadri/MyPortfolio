@@ -59,7 +59,7 @@ export default function Process() {
             animate={{ color: theme.text }}
             style={{
               fontSize: 'clamp(3rem, 7vw, 6rem)',
-              fontFamily: 'Bebas Neue, sans-serif',
+              fontFamily: 'var(--font-heading)',
               textTransform: 'uppercase',
               lineHeight: 0.8,
               margin: 0,
@@ -70,7 +70,7 @@ export default function Process() {
           <motion.p 
             animate={{ color: theme.muted }}
             style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'var(--font-body)',
               fontSize: '0.7rem',
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
@@ -120,7 +120,8 @@ export default function Process() {
                   bottom: '-10%',
                   right: '-5%',
                   fontSize: '15rem',
-                  fontFamily: 'Bebas Neue, sans-serif',
+                  fontFamily: 'var(--font-heading)',
+                  fontWeight: 300,
                   userSelect: 'none',
                   pointerEvents: 'none',
                   zIndex: 0,
@@ -133,7 +134,7 @@ export default function Process() {
                 <motion.span 
                   animate={{ color: theme.muted }}
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'var(--font-body)',
                     fontSize: '0.7rem',
                     letterSpacing: '0.2em',
                     textTransform: 'uppercase',
@@ -145,7 +146,7 @@ export default function Process() {
                   animate={{ color: theme.text }}
                   style={{
                     fontSize: '2rem',
-                    fontFamily: 'Bebas Neue, sans-serif',
+                    fontFamily: 'var(--font-heading)',
                     textTransform: 'uppercase',
                     marginTop: '0.5rem',
                     letterSpacing: '0.04em',

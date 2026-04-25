@@ -11,7 +11,7 @@ export default function NocodeLatCaseStudy() {
       <div style={{ padding: '2rem 3rem' }}>
         <button
           onClick={() => router.back()}
-          style={{ background: 'transparent', border: 'none', color: '#444', fontFamily: 'monospace', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', padding: 0 }}
+          style={{ background: 'transparent', border: 'none', color: '#444', fontFamily: 'var(--font-body)', fontSize: '0.75rem', letterSpacing: '0.15em', textTransform: 'uppercase', cursor: 'pointer', padding: 0 }}
           onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
           onMouseLeave={e => (e.currentTarget.style.color = '#444')}
         >
@@ -20,7 +20,7 @@ export default function NocodeLatCaseStudy() {
       </div>
 
       <div style={{ padding: '4rem 3rem 6rem', borderBottom: '1px solid #2e2e2e' }}>
-        <p style={{ fontFamily: 'monospace', fontSize: '0.7rem', letterSpacing: '0.2em', color: '#444', textTransform: 'uppercase', marginBottom: '2rem' }}>
+        <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.7rem', letterSpacing: '0.2em', color: '#444', textTransform: 'uppercase', marginBottom: '2rem' }}>
           01 — Website Design & Community Growth
         </p>
         <h1 style={{ fontSize: 'clamp(4rem, 12vw, 11rem)', fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 0.9, textTransform: 'uppercase', marginBottom: '3rem' }}>

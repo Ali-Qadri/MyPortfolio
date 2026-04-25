@@ -148,23 +148,23 @@ export default function DraggablePhoto() {
           <div ref={cardRef} onMouseDown={onMouseDown} style={{ position: 'absolute', pointerEvents: 'all', cursor: isDragging ? 'grabbing' : 'grab', userSelect: 'none', transform: `translate3d(${pos.x}px, ${pos.y}px, 0) rotate(${rotation}deg) perspective(600px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`, transition: isDragging ? 'none' : 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)', filter: `drop-shadow(${shadow.x}px ${shadow.y}px ${isDragging ? 28 : 16}px rgba(0,0,0,0.55))`, willChange: 'transform' }}>
             <div style={{ background: '#252525', border: '1px solid #2e2e2e', padding: '12px 12px 0 12px', borderRadius: '4px', width: size.w + 'px', position: 'relative' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '10px' }}>
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#ff5f57' }} />
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#febc2e' }} />
-                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#28c840' }} />
-                <span style={{ fontFamily: 'monospace', fontSize: '13px', color: '#888', marginLeft: '6px', letterSpacing: '0.08em' }}>ali@portfolio</span>
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#444' }} />
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#333' }} />
+                <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#222' }} />
+                <span style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: '#888', marginLeft: '6px', letterSpacing: '0.08em' }}>ali@portfolio</span>
               </div>
               <img src="/me.jpeg" alt="Syed Ali" draggable={false} style={{ width: '100%', height: size.h + 'px', objectFit: 'cover', objectPosition: 'center 15%', filter: 'grayscale(100%) contrast(1.2) brightness(0.9)', display: 'block', borderRadius: '2px' }} />
               <div style={{ padding: '12px 2px 14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div>
-                  <p style={{ fontFamily: 'monospace', fontSize: '16px', fontWeight: 'bold', color: '#ccc', letterSpacing: '0.08em', margin: 0, userSelect: 'none' }}>Ali Qadri</p>
-                  <p style={{ fontFamily: 'monospace', fontSize: '13px', color: '#666', letterSpacing: '0.06em', margin: '4px 0 0', userSelect: 'none' }}>Web Designer</p>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: '16px', fontWeight: 400, color: '#ccc', letterSpacing: '0.08em', margin: 0, userSelect: 'none' }}>Ali Qadri</p>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: '13px', color: '#666', letterSpacing: '0.06em', margin: '4px 0 0', userSelect: 'none' }}>Web Designer</p>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#0a1a0a', border: '1px solid #1a3a1a', borderRadius: '999px', padding: '4px 10px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#1a1a1a', border: '1px solid #333', borderRadius: '999px', padding: '4px 10px' }}>
                   <div style={{ position: 'relative', width: '8px', height: '8px' }}>
-                    <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: '#28c840', animation: 'ping 1.5s ease-out infinite' }} />
-                    <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: '#28c840', animation: 'pulse 1.5s ease-in-out infinite' }} />
+                    <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: '#fff', animation: 'ping 1.5s ease-out infinite' }} />
+                    <div style={{ position: 'absolute', inset: 0, borderRadius: '50%', background: '#fff', animation: 'pulse 1.5s ease-in-out infinite' }} />
                   </div>
-                  <span style={{ fontFamily: 'monospace', fontSize: '11px', fontWeight: 'bold', color: '#28c840', letterSpacing: '0.06em', userSelect: 'none', whiteSpace: 'nowrap' }}>Available</span>
+                  <span style={{ fontFamily: 'var(--font-body)', fontSize: '11px', fontWeight: 400, color: '#fff', letterSpacing: '0.06em', userSelect: 'none', whiteSpace: 'nowrap' }}>Available</span>
                 </div>
               </div>
               <div onMouseDown={onResizeDown} style={{ position: 'absolute', bottom: '6px', right: '6px', width: '18px', height: '18px', cursor: 'se-resize', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

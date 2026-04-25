@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@300;400;500&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --font-heading: 'Instrument Serif', serif;
-  --font-body: 'Instrument Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
-  --accent: #ff4d4d; /* High-impact red from inspiration */
-  --border: rgba(255, 255, 255, 0.08);
+  --font-heading: 'Satoshi', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+  --font-mono: 'Satoshi', sans-serif; /* Unified look */
+  --accent: #ffffff; 
+  --border: rgba(255, 255, 255, 0.12);
   --text-primary: #ffffff;
-  --text-secondary: #aaaaaa;
-  --text-muted: #444444;
+  --text-secondary: #999999;
+  --text-muted: #666666;
 }
 
 * {
@@ -37,8 +38,8 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
-  letter-spacing: -0.02em;
-  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-weight: 300; /* Light weight for editorial feel */
 }
 
 p {

@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const experiences = [
   {
@@ -38,6 +39,25 @@ export default function Experience() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] }
+    }
+  };
+
   return (
     <section id="experience" style={{
       padding: 'clamp(5rem, 15vw, 12rem) clamp(1.5rem, 5vw, 4rem)',
@@ -49,14 +69,24 @@ export default function Experience() {
         <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Experience</span>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+        style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}
+      >
         {experiences.map((exp, i) => (
-          <div key={i} style={{ 
-            display: 'grid', 
-            gridTemplateColumns: isMobile ? '1fr' : '1fr 1.5fr', 
-            gap: '4rem',
-            position: 'relative'
-          }}>
+          <motion.div 
+            key={i} 
+            variants={itemVariants}
+            style={{ 
+              display: 'grid', 
+              gridTemplateColumns: isMobile ? '1fr' : '1fr 1.5fr', 
+              gap: '4rem',
+              position: 'relative'
+            }}
+          >
             {/* Number Background */}
             {!isMobile && (
               <span style={{
@@ -73,7 +103,7 @@ export default function Experience() {
 
             <div style={{ position: 'relative', zIndex: 1 }}>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent)', marginBottom: '1.5rem' }}>{exp.period}</p>
-              <h3 style={{ fontSize: '3rem', margin: 0, color: '#fff', fontWeight: 500, lineHeight: 1.1 }}>{exp.role}</h3>
+              <h3 style={{ fontSize: '3rem', margin: 0, color: '#fff', fontWeight: 400, lineHeight: 1.1 }}>{exp.role}</h3>
               <p style={{ 
                 fontFamily: 'var(--font-heading)', 
                 fontSize: '1.5rem', 
@@ -99,9 +129,9 @@ export default function Experience() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

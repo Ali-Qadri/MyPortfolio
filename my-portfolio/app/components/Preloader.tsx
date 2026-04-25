@@ -49,9 +49,9 @@ export default function Preloader() {
       {/* Counter */}
       <span
         style={{
-          fontFamily: 'monospace',
+          fontFamily: 'var(--font-body)',
           fontSize: 'clamp(5rem, 15vw, 12rem)',
-          fontWeight: 700,
+          fontWeight: 300,
           color: '#fff',
           lineHeight: 1,
           letterSpacing: '-0.04em',
@@ -67,7 +67,7 @@ export default function Preloader() {
       {/* Bottom right label */}
       <span
         style={{
-          fontFamily: 'monospace',
+          fontFamily: 'var(--font-body)',
           fontSize: '0.7rem',
           color: '#444',
           letterSpacing: '0.15em',

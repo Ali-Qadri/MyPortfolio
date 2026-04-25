@@ -49,7 +49,7 @@ export default function Navbar() {
           textTransform: 'uppercase',
           letterSpacing: '0.15em',
         }}>
-          Visual Designer & Art Director
+          AVAILABLE FOR WORK
         </div>
       )}
 
@@ -68,8 +68,8 @@ export default function Navbar() {
             fontWeight: 500,
             transition: 'all 0.3s ease',
           }}
-          onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
-          onMouseLeave={e => e.currentTarget.style.color = 'var(--text-primary)'}
+            onMouseEnter={e => e.currentTarget.style.color = 'var(--accent)'}
+            onMouseLeave={e => e.currentTarget.style.color = 'var(--text-primary)'}
           >
             {link.label}
           </a>
@@ -78,4 +78,4 @@ export default function Navbar() {
     </nav>
   );
 }
-
+

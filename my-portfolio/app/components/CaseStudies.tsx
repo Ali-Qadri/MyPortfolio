@@ -1,6 +1,7 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useRef, useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const studies = [
   {
@@ -9,7 +10,6 @@ const studies = [
     title: 'NoCode.Lat',
     type: 'Website Design & Community Growth',
     year: '2025',
-    tools: ['Figma'],
     preview: '/nocodelat/nocode-preview.gif',
   },
   {
@@ -18,7 +18,6 @@ const studies = [
     title: 'LinkedIn Banner',
     type: 'LinkedIn Banner Design',
     year: '2026',
-    tools: ['Figma'],
     preview: '/rikbasi/rikbasi-preview.gif',
   },
 ];
@@ -31,8 +30,6 @@ export default function CaseStudies() {
   const previewRef = useRef<HTMLDivElement>(null);
   const current = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
-  const rafRef = useRef<number | undefined>(undefined);
-
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -51,24 +48,31 @@ export default function CaseStudies() {
       if (previewRef.current) {
         previewRef.current.style.transform = `translate(${current.current.x}px, ${current.current.y}px)`;
       }
-      rafRef.current = requestAnimationFrame(animate);
+      requestAnimationFrame(animate);
     };
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current!);
+    const raf = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   const onMouseMove = (e: React.MouseEvent) => {
     target.current = { x: e.clientX + 24, y: e.clientY - 80 };
   };
 
-  const onMouseEnter = (preview: string) => {
-    setActivePreview(preview);
-    setTimeout(() => setVisible(true), 10);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
   };
 
-  const onMouseLeave = () => {
-    setVisible(false);
-    setTimeout(() => setActivePreview(null), 400);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] }
+    }
   };
 
   return (
@@ -88,7 +92,7 @@ export default function CaseStudies() {
           zIndex: 999,
           pointerEvents: 'none',
           opacity: visible ? 1 : 0,
-          scale: visible ? '1' : '0.92',
+          scale: visible ? 1 : 0.9,
           transition: 'opacity 0.4s ease, scale 0.4s ease',
           willChange: 'transform',
         }}>
@@ -106,17 +110,24 @@ export default function CaseStudies() {
       )}
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}>
-        <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Work</span>
+        <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-body)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Work</span>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={containerVariants}
+        style={{ display: 'flex', flexDirection: 'column' }}
+      >
         {studies.map((study) => (
-          <div
+          <motion.div
             key={study.id}
+            variants={itemVariants}
             onClick={() => router.push(`/case-studies/${study.id}`)}
-            onMouseMove={!isMobile ? onMouseMove : undefined}
-            onMouseEnter={() => !isMobile && study.preview && onMouseEnter(study.preview)}
-            onMouseLeave={() => !isMobile && study.preview && onMouseLeave()}
+            onMouseMove={onMouseMove}
+            onMouseEnter={() => { if (!isMobile) { setActivePreview(study.preview); setVisible(true); } }}
+            onMouseLeave={() => setVisible(false)}
             style={{
               padding: 'clamp(3rem, 6vw, 6rem) 0',
               display: 'grid',
@@ -125,20 +136,13 @@ export default function CaseStudies() {
               alignItems: 'center',
               cursor: 'pointer',
               borderTop: '1px solid var(--border)',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={e => {
-              const h2 = e.currentTarget.querySelector('h2');
-              if (h2) h2.style.transform = 'translateX(30px)';
-            }}
-            onMouseLeave={e => {
-              const h2 = e.currentTarget.querySelector('h2');
-              if (h2) h2.style.transform = 'none';
+              overflow: 'hidden',
+              position: 'relative'
             }}
           >
             {!isMobile && (
               <span style={{
-                fontFamily: 'var(--font-mono)',
+                fontFamily: 'var(--font-body)',
                 fontSize: '0.8rem',
                 color: 'var(--accent)',
               }}>
@@ -152,7 +156,7 @@ export default function CaseStudies() {
               lineHeight: 0.9,
               margin: 0,
               fontFamily: 'var(--font-heading)',
-              fontWeight: 400,
+              fontWeight: 300,
               transition: 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
             }}>
               {study.title}
@@ -173,7 +177,7 @@ export default function CaseStudies() {
                   {study.type}
                 </span>
                 <span style={{
-                  fontFamily: 'var(--font-mono)',
+                  fontFamily: 'var(--font-body)',
                   fontSize: '0.75rem',
                   color: 'var(--text-muted)',
                   textTransform: 'uppercase',
@@ -184,16 +188,16 @@ export default function CaseStudies() {
             )}
 
             <span style={{
-              fontFamily: 'var(--font-mono)',
+              fontFamily: 'var(--font-body)',
               fontSize: '2rem',
               color: 'var(--accent)',
             }}>
               →
             </span>
-          </div>
+          </motion.div>
         ))}
         <div style={{ borderTop: '1px solid var(--border)' }} />
-      </div>
+      </motion.div>
     </section>
   );
 }
