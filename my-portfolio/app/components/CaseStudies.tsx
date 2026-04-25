@@ -1,8 +1,8 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { cubicBezier } from "framer-motion";
+import { motion, cubicBezier, Variants } from "framer-motion";
+
 
 const studies = [
   {
@@ -59,7 +59,7 @@ export default function CaseStudies() {
     target.current = { x: e.clientX + 24, y: e.clientY - 80 };
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -67,14 +67,14 @@ export default function CaseStudies() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: cubicBezier(0.23, 1, 0.32, 1)
+        ease: cubicBezier(0.23, 1, 0.32, 1),
       }
     }
   };
