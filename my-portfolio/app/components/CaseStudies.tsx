@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { cubicBezier } from "framer-motion";
 
 const studies = [
   {
@@ -68,10 +69,13 @@ export default function CaseStudies() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] }
+      transition: {
+        duration: 0.8,
+        ease: cubicBezier(0.23, 1, 0.32, 1)
+      }
     }
   };
 
@@ -113,7 +117,7 @@ export default function CaseStudies() {
         <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-body)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Work</span>
       </div>
 
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -182,7 +186,7 @@ export default function CaseStudies() {
                   color: 'var(--text-muted)',
                   textTransform: 'uppercase',
                 }}>
-                   {study.year}
+                  {study.year}
                 </span>
               </div>
             )}
