@@ -7,7 +7,7 @@ export default function AboutMe() {
       { degree: 'Diploma in IT', institution: 'Aptech Pakistan', period: '2021 - 2024' }
     ],
     skills: ['Communication', 'Programming Basics', 'Motion Design (Framer)', 'Problem Solving'],
-    tools: ['Framer', 'Wordpress', 'Figma', "Wix", "Vibecoding"]
+    tools: ['Framer', 'Wordpress', 'Figma', "Wix", "Vibecoding"],
   };
 
   return (

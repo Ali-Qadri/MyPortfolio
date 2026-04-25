@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, cubicBezier, Variants } from "framer-motion";
 
 const experiences = [
   {
@@ -51,10 +51,10 @@ export default function Experience() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: [0.23, 1, 0.32, 1] }
+      transition: { duration: 0.8, ease: cubicBezier(0.23, 1, 0.32, 1), }
     }
   };
 
@@ -69,7 +69,7 @@ export default function Experience() {
         <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Experience</span>
       </div>
 
-      <motion.div 
+      <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -77,12 +77,12 @@ export default function Experience() {
         style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}
       >
         {experiences.map((exp, i) => (
-          <motion.div 
-            key={i} 
+          <motion.div
+            key={i}
             variants={itemVariants}
-            style={{ 
-              display: 'grid', 
-              gridTemplateColumns: isMobile ? '1fr' : '1fr 1.5fr', 
+            style={{
+              display: 'grid',
+              gridTemplateColumns: isMobile ? '1fr' : '1fr 1.5fr',
               gap: '4rem',
               position: 'relative'
             }}
@@ -104,10 +104,10 @@ export default function Experience() {
             <div style={{ position: 'relative', zIndex: 1 }}>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent)', marginBottom: '1.5rem' }}>{exp.period}</p>
               <h3 style={{ fontSize: '3rem', margin: 0, color: '#fff', fontWeight: 400, lineHeight: 1.1 }}>{exp.role}</h3>
-              <p style={{ 
-                fontFamily: 'var(--font-heading)', 
-                fontSize: '1.5rem', 
-                color: 'var(--text-secondary)', 
+              <p style={{
+                fontFamily: 'var(--font-heading)',
+                fontSize: '1.5rem',
+                color: 'var(--text-secondary)',
                 fontStyle: 'italic',
                 marginTop: '1rem'
               }}>
@@ -117,9 +117,9 @@ export default function Experience() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', position: 'relative', zIndex: 1, justifyContent: 'center' }}>
               {exp.details.map((detail, index) => (
-                <div key={index} style={{ 
-                  fontSize: '1.1rem', 
-                  color: 'var(--text-secondary)', 
+                <div key={index} style={{
+                  fontSize: '1.1rem',
+                  color: 'var(--text-secondary)',
                   lineHeight: 1.5,
                   display: 'flex',
                   gap: '1.5rem'
