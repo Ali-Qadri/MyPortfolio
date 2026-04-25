@@ -6,20 +6,20 @@ const studies = [
   {
     id: 'nocode-lat',
     number: '01',
-    title: 'Designed website concepts for nocode.lat',
+    title: 'NoCode.Lat',
     type: 'Website Design & Community Growth',
     year: '2025',
     tools: ['Figma'],
     preview: '/nocodelat/nocode-preview.gif',
   },
   {
-    id: 'coming-soon',
+    id: 'linkedin-banner',
     number: '02',
     title: 'LinkedIn Banner',
-    type: 'Coming Soon',
-    year: '—',
-    tools: [],
-    preview: null,
+    type: 'LinkedIn Banner Design',
+    year: '2026',
+    tools: ['Figma'],
+    preview: '/rikbasi/rikbasi-preview.gif',
   },
 ];
 
@@ -31,9 +31,12 @@ export default function CaseStudies() {
   const previewRef = useRef<HTMLDivElement>(null);
   const current = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | undefined>(undefined);
+
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     setIsMobile(window.innerWidth < 768);
     const onResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', onResize);
@@ -69,96 +72,88 @@ export default function CaseStudies() {
   };
 
   return (
-    <section id="work" style={{ padding: 'clamp(4rem, 10vw, 8rem) clamp(1.5rem, 5vw, 3rem)', width: '100%' }}>
+    <section id="work" style={{
+      padding: 'clamp(5rem, 15vw, 12rem) clamp(1.5rem, 5vw, 4rem)',
+      width: '100%',
+      maxWidth: '1440px',
+      margin: '0 auto',
+      background: '#000000',
+    }}>
 
-      {/* Floating preview — desktop only */}
-      {!isMobile && (
-        <div
-          ref={previewRef}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            zIndex: 999,
-            pointerEvents: 'none',
-            opacity: visible ? 1 : 0,
-            scale: visible ? '1' : '0.92',
-            transition: 'opacity 0.4s ease, scale 0.4s ease',
-            willChange: 'transform',
-          }}
-        >
+      {mounted && !isMobile && (
+        <div ref={previewRef} style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: 999,
+          pointerEvents: 'none',
+          opacity: visible ? 1 : 0,
+          scale: visible ? '1' : '0.92',
+          transition: 'opacity 0.4s ease, scale 0.4s ease',
+          willChange: 'transform',
+        }}>
           {activePreview && (
-            <img
-              src={activePreview}
-              alt="preview"
-              style={{
-                width: '320px',
-                height: 'auto',
-                borderRadius: '2px',
-                display: 'block',
-                filter: 'grayscale(20%)',
-              }}
-            />
+            <img src={activePreview} alt="preview" style={{
+              width: '500px',
+              height: 'auto',
+              borderRadius: '2px',
+              display: 'block',
+              filter: 'grayscale(100%) contrast(1.1) brightness(0.9)',
+              border: '1px solid var(--border)',
+            }} />
           )}
         </div>
       )}
 
-      <p style={{
-        fontFamily: 'monospace',
-        fontSize: '0.7rem',
-        letterSpacing: '0.2em',
-        textTransform: 'uppercase',
-        color: '#949494',
-        marginBottom: '4rem',
-      }}>
-        Selected Work
-      </p>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}>
+        <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Work</span>
+      </div>
 
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         {studies.map((study) => (
           <div
             key={study.id}
-            onClick={() => study.id !== 'coming-soon' && router.push(`/case-studies/${study.id}`)}
+            onClick={() => router.push(`/case-studies/${study.id}`)}
             onMouseMove={!isMobile ? onMouseMove : undefined}
             onMouseEnter={() => !isMobile && study.preview && onMouseEnter(study.preview)}
             onMouseLeave={() => !isMobile && study.preview && onMouseLeave()}
             style={{
-              borderTop: '1px solid #1f1f1f',
-              padding: 'clamp(1.5rem, 4vw, 2.5rem) 0',
-              display: 'flex',
-              alignItems: isMobile ? 'flex-start' : 'center',
-              flexDirection: isMobile ? 'column' : 'row',
-              justifyContent: 'space-between',
-              cursor: study.id !== 'coming-soon' ? 'pointer' : 'default',
-              transition: 'padding-left 0.3s ease',
-              gap: isMobile ? '0.75rem' : '2rem',
+              padding: 'clamp(3rem, 6vw, 6rem) 0',
+              display: 'grid',
+              gridTemplateColumns: isMobile ? '1fr auto' : '4rem 2fr 1fr auto',
+              gap: '2rem',
+              alignItems: 'center',
+              cursor: 'pointer',
+              borderTop: '1px solid var(--border)',
+              transition: 'all 0.3s ease',
             }}
-            onMouseOver={e => {
-              if (study.id !== 'coming-soon' && !isMobile)
-                (e.currentTarget as HTMLElement).style.paddingLeft = '1.5rem';
+            onMouseEnter={e => {
+              const h2 = e.currentTarget.querySelector('h2');
+              if (h2) h2.style.transform = 'translateX(30px)';
             }}
-            onMouseOut={e => {
-              if (!isMobile)
-                (e.currentTarget as HTMLElement).style.paddingLeft = '0';
+            onMouseLeave={e => {
+              const h2 = e.currentTarget.querySelector('h2');
+              if (h2) h2.style.transform = 'none';
             }}
           >
-            <span style={{
-              fontFamily: 'monospace',
-              fontSize: '0.75rem',
-              color: '#949494',
-              minWidth: '2rem',
-            }}>
-              {study.number}
-            </span>
+            {!isMobile && (
+              <span style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '0.8rem',
+                color: 'var(--accent)',
+              }}>
+                /{study.number}
+              </span>
+            )}
 
             <h2 style={{
-              fontSize: 'clamp(1.5rem, 5vw, 5rem)',
-              fontWeight: 900,
-              letterSpacing: '-0.03em',
-              color: study.id === 'coming-soon' ? '#222' : '#fff',
-              flex: 1,
-              lineHeight: 1,
-              textTransform: 'uppercase',
+              fontSize: 'clamp(3rem, 7vw, 8.5rem)',
+              color: '#fff',
+              lineHeight: 0.9,
+              margin: 0,
+              fontFamily: 'var(--font-heading)',
+              fontWeight: 400,
+              transition: 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
             }}>
               {study.title}
             </h2>
@@ -167,48 +162,37 @@ export default function CaseStudies() {
               <div style={{
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'flex-end',
-                gap: '4px',
-                minWidth: '180px',
+                gap: '12px',
               }}>
                 <span style={{
-                  fontFamily: 'monospace',
-                  fontSize: '0.7rem',
-                  color: '#949494',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  textAlign: 'right',
+                  fontFamily: 'var(--font-heading)',
+                  fontSize: '1.4rem',
+                  color: 'var(--text-secondary)',
+                  fontStyle: 'italic',
                 }}>
                   {study.type}
                 </span>
                 <span style={{
-                  fontFamily: 'monospace',
-                  fontSize: '0.65rem',
-                  color: '#949494',
+                  fontFamily: 'var(--font-mono)',
+                  fontSize: '0.75rem',
+                  color: 'var(--text-muted)',
+                  textTransform: 'uppercase',
                 }}>
-                  {study.year}
+                   {study.year}
                 </span>
               </div>
             )}
 
-            {isMobile && (
-              <span style={{
-                fontFamily: 'monospace',
-                fontSize: '0.65rem',
-                color: '#444',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-              }}>
-                {study.type} — {study.year}
-              </span>
-            )}
-
-            {study.id !== 'coming-soon' && (
-              <span style={{ fontSize: '1.2rem', color: '#949494' }}>→</span>
-            )}
+            <span style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: '2rem',
+              color: 'var(--accent)',
+            }}>
+              →
+            </span>
           </div>
         ))}
-        <div style={{ borderTop: '1px solid #1f1f1f' }} />
+        <div style={{ borderTop: '1px solid var(--border)' }} />
       </div>
     </section>
   );

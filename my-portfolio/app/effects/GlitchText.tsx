@@ -1,5 +1,5 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&';
 const rand = () => CHARS[Math.floor(Math.random() * CHARS.length)];
@@ -17,7 +17,7 @@ export default function GlitchText({ children }: { children: string }) {
   const scramble = () => {
     letterIndices.forEach((charIndex, refIndex) => {
       const ch = letters[charIndex];
-      const span = spanRefs.current[refIndex];
+      const span = spanRefs.current[charIndex];
       if (!span) return;
 
       let start: number | null = null;
@@ -40,7 +40,15 @@ export default function GlitchText({ children }: { children: string }) {
     });
   };
 
-  let refIndex = 0;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <span style={{ cursor: 'pointer' }}>{children}</span>;
+  }
 
   return (
     <span onMouseEnter={scramble} style={{ cursor: 'pointer' }}>
@@ -48,7 +56,7 @@ export default function GlitchText({ children }: { children: string }) {
         ch === ' '
           ? <span key={i}>&nbsp;</span>
           : (
-            <span key={i} ref={el => { spanRefs.current[refIndex++] = el; }}>
+            <span key={i} ref={el => { spanRefs.current[i] = el; }}>
               {ch}
             </span>
           )

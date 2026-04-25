@@ -37,7 +37,7 @@ export default function Preloader() {
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: '#0a0a0a',
+        background: '#1a1a1a',
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'space-between',

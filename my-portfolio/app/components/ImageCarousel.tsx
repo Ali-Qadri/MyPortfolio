@@ -6,7 +6,7 @@ export default function NocodeLatCaseStudy() {
   const router = useRouter();
 
   return (
-    <main style={{ background: '#0a0a0a', minHeight: '100vh', color: '#fff' }}>
+    <main style={{ background: '#1a1a1a', minHeight: '100vh', color: '#fff' }}>
 
       <div style={{ padding: '2rem 3rem' }}>
         <button
@@ -19,7 +19,7 @@ export default function NocodeLatCaseStudy() {
         </button>
       </div>
 
-      <div style={{ padding: '4rem 3rem 6rem', borderBottom: '1px solid #1a1a1a' }}>
+      <div style={{ padding: '4rem 3rem 6rem', borderBottom: '1px solid #2e2e2e' }}>
         <p style={{ fontFamily: 'monospace', fontSize: '0.7rem', letterSpacing: '0.2em', color: '#444', textTransform: 'uppercase', marginBottom: '2rem' }}>
           01 — Website Design & Community Growth
         </p>
@@ -88,4 +88,58 @@ function ImageCarousel() {
 
   const onMouseMove = (e: React.MouseEvent) => {
     if (!isDragging.current) return;
-    e.preventDefault();
+    const x = e.pageX - trackRef.current!.offsetLeft;
+    const walk = (x - startX.current) * 2;
+    trackRef.current!.scrollLeft = scrollLeft.current - walk;
+  };
+
+  const onMouseUp = () => {
+    isDragging.current = false;
+    trackRef.current!.style.cursor = 'grab';
+  };
+
+  const images = [
+    '/nocodelat/nocode-1.png',
+    '/nocodelat/nocode-2.png',
+    '/nocodelat/nocode-3.png',
+    '/nocodelat/nocode-4.png',
+  ];
+
+  return (
+    <div
+      style={{ overflow: 'hidden', cursor: 'grab', marginBottom: '6rem' }}
+      onMouseDown={onMouseDown}
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+      onMouseLeave={onMouseUp}
+    >
+      <div
+        ref={trackRef}
+        style={{
+          display: 'flex',
+          gap: '2rem',
+          padding: '0 3rem',
+          overflowX: 'auto',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}
+      >
+        {images.map((img, i) => (
+          <img
+            key={i}
+            src={img}
+            alt={`case study ${i}`}
+            draggable={false}
+            style={{
+              height: '480px',
+              width: 'auto',
+              flexShrink: 0,
+              display: 'block',
+              filter: 'grayscale(10%) contrast(1.1)',
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}

@@ -22,10 +22,10 @@ export default function NocodeLatCaseStudy() {
 
       <div style={{ padding: '4rem 3rem 6rem', borderBottom: '1px solid #1a1a1a' }}>
         <p style={{ fontFamily: 'monospace', fontSize: '0.7rem', letterSpacing: '0.2em', color: '#949494', textTransform: 'uppercase', marginBottom: '2rem' }}>
-          01 — Website Design & Community Growth
+          02 — LinkedIn Banner Design
         </p>
         <h1 style={{ fontSize: 'clamp(4rem, 12vw, 11rem)', fontWeight: 900, letterSpacing: '-0.01em', lineHeight: 0.9, textTransform: 'uppercase', marginBottom: '3rem' }}>
-          Website design concept for nocode lat
+          Linkedin Banner<br />For Rik Basi
         </h1>
         <div style={{ display: 'flex', gap: '4rem', flexWrap: 'wrap', marginTop: '3rem' }}>
           {[
@@ -103,10 +103,10 @@ function ImageCarousel() {
   };
 
   const images = [
-    { src: '/nocodelat/nocode-1.png', label: 'Card UI Design' },
-    { src: '/nocodelat/nocode-2.png', label: 'Variant Comparison' },
-    { src: '/nocodelat/nocode-3.png', label: 'Final Dark Mode' },
-    { src: '/nocodelat/nocode-4.png', label: 'Layouts 5, 6 & 7' },
+    { src: '/rikbasi/1.png', label: 'Concept 1' },
+    { src: '/rikbasi/2.png', label: 'Concept 2' },
+    { src: '/rikbasi/3.png', label: 'Concept 3' },
+
   ];
 
   return (
