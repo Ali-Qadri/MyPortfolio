@@ -2,11 +2,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion';
+import ContactPopup from '@/app/components/ContactPopup';
 
 export default function Hero() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   // Magnetic Button Logic
   const mouseX = useMotionValue(0);
@@ -14,6 +16,11 @@ export default function Hero() {
   const springConfig = { damping: 20, stiffness: 150, mass: 0.5 };
   const x = useSpring(mouseX, springConfig);
   const y = useSpring(mouseY, springConfig);
+
+  const mouseX2 = useMotionValue(0);
+  const mouseY2 = useMotionValue(0);
+  const x2 = useSpring(mouseX2, springConfig);
+  const y2 = useSpring(mouseY2, springConfig);
 
   const { scrollY } = useScroll();
   const yParallax = useTransform(scrollY, [0, 1000], [0, 300]);
@@ -38,6 +45,20 @@ export default function Hero() {
   const handleMouseLeave = () => {
     mouseX.set(0);
     mouseY.set(0);
+  };
+
+  const handleMouseMove2 = (e: React.MouseEvent) => {
+    const { clientX, clientY, currentTarget } = e;
+    const { left, top, width, height } = currentTarget.getBoundingClientRect();
+    const centerX = left + width / 2;
+    const centerY = top + height / 2;
+    mouseX2.set((clientX - centerX) * 0.4);
+    mouseY2.set((clientY - centerY) * 0.6);
+  };
+
+  const handleMouseLeave2 = () => {
+    mouseX2.set(0);
+    mouseY2.set(0);
   };
 
   const bioText = "I do nothing fancy. Just clean design and smooth experience.";
@@ -87,6 +108,42 @@ export default function Hero() {
           >
             A designer who ships.
           </motion.h1>
+          <div style={{ overflow: 'hidden', marginTop: '1.5rem', paddingLeft: '1rem', paddingBottom: '2rem', paddingTop: '1rem' }}>
+            <motion.button
+              onClick={() => setIsPopupOpen(true)}
+              onMouseMove={handleMouseMove2}
+              onMouseLeave={handleMouseLeave2}
+              initial={{ y: "100%" }}
+              animate={mounted ? { y: 0 } : { y: "100%" }}
+              transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1], delay: 0.4 }}
+              style={{
+                x: x2, y: y2,
+                padding: '1.2rem 3rem',
+                border: '1px solid var(--border)',
+                borderRadius: '100px',
+                color: '#fff',
+                fontSize: '0.8rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.15em',
+                background: 'transparent',
+                cursor: 'pointer',
+                transition: 'background 0.4s, color 0.4s, border-color 0.4s',
+                display: 'inline-block'
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = '#fff';
+                e.currentTarget.style.color = '#000';
+                e.currentTarget.style.borderColor = '#fff';
+              }}
+              onMouseOut={e => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.borderColor = 'var(--border)';
+              }}
+            >
+              Let's Talk
+            </motion.button>
+          </div>
         </motion.div>
 
         <div style={{
@@ -207,6 +264,8 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
+
+      <ContactPopup isOpen={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
     </section>
   );
 }

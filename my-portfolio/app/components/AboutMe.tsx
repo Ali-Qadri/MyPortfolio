@@ -59,30 +59,41 @@ export default function AboutMe() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, amount: 0.15 }}
         >
-          <div style={{ position: 'relative', marginBottom: '6rem' }}>
+          <div style={{ position: 'relative', marginBottom: '4rem' }}>
             <motion.span style={{
               fontSize: 'clamp(8rem, 15vw, 15rem)',
               fontFamily: 'var(--font-body)',
               fontWeight: 400,
               color: 'transparent',
-              WebkitTextStroke: '1px var(--border)',
+              WebkitTextStroke: '1px rgba(255, 255, 255, 0.05)',
               lineHeight: 1,
               position: 'absolute',
-              top: '-6rem',
-              left: '-2rem',
+              top: '2rem',
+              left: '0rem',
               zIndex: 0,
               y: yParallax1
             }}>01</motion.span>
             <h2 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', position: 'relative', zIndex: 1, color: '#fff' }}>Education</h2>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             {resume.education.map((edu, i) => (
-              <div key={i}>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--accent)', marginBottom: '1rem' }}>{edu.period}</p>
-                <h3 style={{ fontSize: '1.8rem', marginBottom: '0.75rem', color: '#fff', fontWeight: 400 }}>{edu.degree}</h3>
-                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontStyle: 'italic', fontFamily: 'var(--font-heading)' }}>{edu.institution}</p>
-              </div>
+              <motion.div 
+                key={i}
+                whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.02)' }}
+                transition={{ duration: 0.3 }}
+                style={{ 
+                  padding: '3rem 1.5rem', 
+                  borderTop: '1px solid var(--border)',
+                  borderBottom: i === resume.education.length - 1 ? '1px solid var(--border)' : 'none',
+                  position: 'relative',
+                  zIndex: 1
+                }}
+              >
+                <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{edu.period}</p>
+                <h3 style={{ fontSize: 'clamp(1.8rem, 3vw, 2.5rem)', margin: '0 0 0.5rem 0', color: '#fff', fontWeight: 400, lineHeight: 1.1 }}>{edu.degree}</h3>
+                <p style={{ fontSize: '1.2rem', color: 'var(--accent)', fontStyle: 'italic', fontFamily: 'var(--font-heading)', margin: 0, marginTop: '1rem' }}>{edu.institution}</p>
+              </motion.div>
             ))}
           </div>
         </motion.div>
@@ -94,48 +105,51 @@ export default function AboutMe() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, amount: 0.15 }}
         >
-          <div style={{ position: 'relative', marginBottom: '6rem' }}>
+          <div style={{ position: 'relative', marginBottom: '4rem' }}>
             <motion.span style={{
               fontSize: 'clamp(8rem, 15vw, 15rem)',
               fontFamily: 'var(--font-body)',
               fontWeight: 400,
               color: 'transparent',
-              WebkitTextStroke: '1px var(--border)',
+              WebkitTextStroke: '1px rgba(255, 255, 255, 0.05)',
               lineHeight: 1,
               position: 'absolute',
-              top: '-6rem',
-              left: '-2rem',
+              top: '2rem',
+              left: '0rem',
               zIndex: 0,
               y: yParallax2
             }}>02</motion.span>
             <h2 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', position: 'relative', zIndex: 1, color: '#fff' }}>Expertise</h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '4rem' : '4rem', position: 'relative', zIndex: 1 }}>
             <div>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '2rem', letterSpacing: '0.1em' }}>Core Expertise</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                {resume.skills.map(item => (
-                  <div key={item} style={{ fontSize: '1.1rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <span style={{ color: 'var(--accent)' }}>/</span> {item}
-                  </div>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {resume.skills.map((item, i) => (
+                  <motion.div key={item} 
+                    whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.02)', x: 10 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ fontSize: '1.05rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '1rem', padding: '1.5rem 1rem', borderTop: '1px solid var(--border)', borderBottom: i === resume.skills.length - 1 ? '1px solid var(--border)' : 'none' }}>
+                    <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '1.1rem', fontWeight: 700 }}>/</span> <span style={{ color: '#fff' }}>{item}</span>
+                  </motion.div>
                 ))}
               </div>
             </div>
-
-
 
             <div>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '2rem', letterSpacing: '0.1em' }}>Technical Stack</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                {resume.tools.map(item => (
-                  <div key={item} style={{ fontSize: '1.1rem', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <span style={{ color: 'var(--accent)' }}>/</span> {item}
-                  </div>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {resume.tools.map((item, i) => (
+                  <motion.div key={item} 
+                    whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.02)', x: 10 }}
+                    transition={{ duration: 0.3 }}
+                    style={{ fontSize: '1.05rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '1rem', padding: '1.5rem 1rem', borderTop: '1px solid var(--border)', borderBottom: i === resume.tools.length - 1 ? '1px solid var(--border)' : 'none' }}>
+                    <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '1.1rem', fontWeight: 700 }}>/</span> <span style={{ color: '#fff' }}>{item}</span>
+                  </motion.div>
                 ))}
               </div>
             </div>
-
           </div>
         </motion.div>
       </div>

@@ -88,61 +88,77 @@ export default function Experience() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.1 }}
         variants={containerVariants}
-        style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '4rem' : '8rem' }}
+        style={{ display: 'flex', flexDirection: 'column' }}
       >
         {experiences.map((exp, i) => (
           <motion.div
             key={i}
             variants={itemVariants}
+            whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.02)' }}
+            transition={{ duration: 0.3 }}
             style={{
               display: 'grid',
               gridTemplateColumns: isMobile ? '1fr' : '1fr 1.5fr',
               gap: '4rem',
-              position: 'relative'
+              position: 'relative',
+              padding: isMobile ? '3rem 1rem' : '5rem 2rem',
+              borderTop: '1px solid var(--border)',
+              borderBottom: i === experiences.length - 1 ? '1px solid var(--border)' : 'none',
+              marginLeft: isMobile ? '0' : '-2rem',
+              marginRight: isMobile ? '0' : '-2rem',
             }}
           >
             {/* Number Background */}
             {!isMobile && (
               <motion.span style={{
                 position: 'absolute',
-                top: '-3rem',
-                left: '-1rem',
-                fontSize: '10rem',
+                top: '2rem',
+                left: '0rem',
+                fontSize: '12rem',
                 fontFamily: 'var(--font-body)',
                 color: 'transparent',
-                WebkitTextStroke: '1px var(--border)',
+                WebkitTextStroke: '1px rgba(255, 255, 255, 0.05)',
                 zIndex: 0,
                 y: yParallax
               }}>0{i + 3}</motion.span>
             )}
 
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--accent)', marginBottom: '1.5rem' }}>{exp.period}</p>
-              <h3 style={{ fontSize: '3rem', margin: 0, color: '#fff', fontWeight: 400, lineHeight: 1.1 }}>{exp.role}</h3>
+            <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '2rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{exp.period}</p>
+              <h3 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', margin: 0, color: '#fff', fontWeight: 400, lineHeight: 1 }}>{exp.role}</h3>
               <p style={{
                 fontFamily: 'var(--font-heading)',
                 fontSize: '1.5rem',
-                color: 'var(--text-secondary)',
+                color: 'var(--accent)',
                 fontStyle: 'italic',
-                marginTop: '1rem'
+                marginTop: '1.5rem',
+                marginBottom: 0
               }}>
                 {exp.company}
               </p>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', position: 'relative', zIndex: 1, justifyContent: 'center' }}>
-              {exp.details.map((detail, index) => (
-                <div key={index} style={{
-                  fontSize: '1.1rem',
-                  color: 'var(--text-secondary)',
-                  lineHeight: 1.5,
-                  display: 'flex',
-                  gap: '1.5rem'
-                }}>
-                  <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>/</span>
-                  {detail}
-                </div>
-              ))}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', position: 'relative', zIndex: 1, justifyContent: 'center', maxWidth: '600px' }}>
+              {exp.details.map((detail, index) => {
+                const keywords = ['12\\+ variants', 'Figma', 'Adobe', 'design system', 'smart animations', 'visual consistency'];
+                let formattedDetail = detail;
+                keywords.forEach(kw => {
+                  formattedDetail = formattedDetail.replace(new RegExp(`(${kw})`, 'gi'), '<span style="color: #fff; font-weight: 500;">$1</span>');
+                });
+
+                return (
+                  <div key={index} style={{
+                    fontSize: '1.05rem',
+                    color: 'var(--text-muted)',
+                    lineHeight: 1.6,
+                    display: 'flex',
+                    gap: '1rem'
+                  }}>
+                    <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '1.1rem', fontWeight: 700 }}>/</span>
+                    <span dangerouslySetInnerHTML={{ __html: formattedDetail }} />
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         ))}

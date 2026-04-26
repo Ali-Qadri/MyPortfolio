@@ -21,6 +21,15 @@ const studies = [
     year: '2026',
     preview: '/rikbasi/rikbasi-preview.gif',
   },
+  {
+    id: 'hanseclub-redesign',
+    number: '03',
+    title: 'Hanse club redesign | Timesx',
+    type: 'Website Redesign',
+    year: '2026',
+    preview: '/hanseclub%20timex/previewhanseclub.gif',
+    link: 'https://timestx.com/en/case-studies/hanseclub-casestudy/',
+  },
 ];
 
 export default function CaseStudies() {
@@ -134,7 +143,13 @@ export default function CaseStudies() {
           <motion.div
             key={study.id}
             variants={itemVariants}
-            onClick={() => router.push(`/case-studies/${study.id}`)}
+            onClick={() => {
+              if ((study as any).link) {
+                window.open((study as any).link, '_blank');
+              } else {
+                router.push(`/case-studies/${study.id}`);
+              }
+            }}
             onMouseMove={onMouseMove}
             onMouseEnter={() => { if (!isMobile) { setActivePreview(study.preview); setVisible(true); } }}
             onMouseLeave={() => setVisible(false)}
