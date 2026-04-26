@@ -3,23 +3,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error' | 'recaptcha_error'>('idle');
-
-  useEffect(() => {
-    if (isOpen) {
-      const script = document.createElement('script');
-      script.src = "https://www.google.com/recaptcha/api.js";
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
-      return () => {
-        // Clean up to prevent duplicate scripts
-        if (document.body.contains(script)) {
-          document.body.removeChild(script);
-        }
-      };
-    }
-  }, [isOpen]);
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,12 +12,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    // Basic frontend recaptcha validation
-    const recaptchaValue = formData.get('g-recaptcha-response');
-    if (!recaptchaValue) {
-      setStatus('recaptcha_error');
-      return;
-    }
+
 
     try {
       const response = await fetch('https://formsubmit.co/ajax/designwithsyed@gmail.com', {
@@ -226,19 +205,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
                   </p>
                 )}
 
-                {status === 'recaptcha_error' && (
-                  <p style={{ color: 'red', fontSize: '0.8rem', fontFamily: 'var(--font-body)' }}>
-                    Please verify that you are not a robot.
-                  </p>
-                )}
 
-                {/* Google reCAPTCHA v2 Widget (Using official testing site key) */}
-                <div style={{ marginTop: '0.5rem' }}>
-                  <div className="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-                  <p style={{ fontSize: '0.6rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginTop: '0.5rem' }}>
-                    Note: Replace the site key in the code with your own live Google reCAPTCHA v2 key.
-                  </p>
-                </div>
 
                 <button
                   type="submit"
