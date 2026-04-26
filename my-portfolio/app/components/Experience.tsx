@@ -65,9 +65,15 @@ export default function Experience() {
       margin: '0 auto',
       background: '#000000',
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-50px" }}
+        style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}
+      >
         <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Experience</span>
-      </div>
+      </motion.div>
 
       <motion.div
         initial="hidden"
