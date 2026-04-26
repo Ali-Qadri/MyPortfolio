@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero() {
   const router = useRouter();
@@ -14,6 +14,9 @@ export default function Hero() {
   const springConfig = { damping: 20, stiffness: 150, mass: 0.5 };
   const x = useSpring(mouseX, springConfig);
   const y = useSpring(mouseY, springConfig);
+
+  const { scrollY } = useScroll();
+  const yParallax = useTransform(scrollY, [0, 1000], [0, 300]);
 
   useEffect(() => {
     setMounted(true);
@@ -59,13 +62,14 @@ export default function Hero() {
         overflow: 'hidden',
         background: '#000000',
       }}>
-        <div style={{
+        <motion.div style={{
           position: 'absolute',
           top: '50%',
           left: '5%',
           transform: 'translateY(-50%)',
           overflow: 'hidden', // The Mask
           zIndex: 1,
+          y: yParallax
         }}>
           <motion.h1
             initial={{ y: "100%" }}
@@ -83,7 +87,7 @@ export default function Hero() {
           >
             A designer who ships.
           </motion.h1>
-        </div>
+        </motion.div>
 
         <div style={{
           position: 'absolute',
@@ -129,7 +133,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <p style={{
               color: 'var(--accent)',
@@ -157,6 +161,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
             style={{ paddingBottom: '2rem' }}
           >
             <p style={{

@@ -113,14 +113,20 @@ export default function CaseStudies() {
         </div>
       )}
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.5 }}
+        style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}
+      >
         <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-body)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Work</span>
-      </div>
+      </motion.div>
 
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, amount: 0.1 }}
         variants={containerVariants}
         style={{ display: 'flex', flexDirection: 'column' }}
       >

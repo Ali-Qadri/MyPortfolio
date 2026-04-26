@@ -1,6 +1,6 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function AboutMe() {
   const [isMobile, setIsMobile] = useState(false);
@@ -11,6 +11,16 @@ export default function AboutMe() {
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  
+  const yParallax1 = useTransform(scrollYProgress, [0, 1], [50, -100]);
+  const yParallax2 = useTransform(scrollYProgress, [0, 1], [100, -150]);
+
   const resume = {
     education: [
       { degree: 'Bachelors in Computer Science', institution: 'Iqra University', period: '2023 - 2027' },
@@ -21,15 +31,21 @@ export default function AboutMe() {
   };
 
   return (
-    <section id="about" style={{
+    <section ref={sectionRef} id="about" style={{
       padding: 'clamp(5rem, 15vw, 12rem) clamp(1.5rem, 5vw, 4rem)',
       maxWidth: '1440px',
       margin: '0 auto',
       background: '#000000',
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.5 }}
+        style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}
+      >
         <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Education</span>
-      </div>
+      </motion.div>
 
       <div style={{
         display: 'grid',
@@ -41,10 +57,10 @@ export default function AboutMe() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.15 }}
         >
           <div style={{ position: 'relative', marginBottom: '6rem' }}>
-            <span style={{
+            <motion.span style={{
               fontSize: 'clamp(8rem, 15vw, 15rem)',
               fontFamily: 'var(--font-body)',
               fontWeight: 400,
@@ -55,7 +71,8 @@ export default function AboutMe() {
               top: '-6rem',
               left: '-2rem',
               zIndex: 0,
-            }}>01</span>
+              y: yParallax1
+            }}>01</motion.span>
             <h2 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', position: 'relative', zIndex: 1, color: '#fff' }}>Education</h2>
           </div>
 
@@ -75,10 +92,10 @@ export default function AboutMe() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, amount: 0.15 }}
         >
           <div style={{ position: 'relative', marginBottom: '6rem' }}>
-            <span style={{
+            <motion.span style={{
               fontSize: 'clamp(8rem, 15vw, 15rem)',
               fontFamily: 'var(--font-body)',
               fontWeight: 400,
@@ -89,7 +106,8 @@ export default function AboutMe() {
               top: '-6rem',
               left: '-2rem',
               zIndex: 0,
-            }}>02</span>
+              y: yParallax2
+            }}>02</motion.span>
             <h2 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', position: 'relative', zIndex: 1, color: '#fff' }}>Expertise</h2>
           </div>
 

@@ -1,6 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { motion, cubicBezier, Variants } from "framer-motion";
+import { useRef, useEffect, useState } from 'react';
+import { motion, cubicBezier, Variants, useScroll, useTransform } from "framer-motion";
 
 const experiences = [
   {
@@ -39,6 +39,14 @@ export default function Experience() {
     return () => window.removeEventListener('resize', onResize);
   }, []);
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const yParallax = useTransform(scrollYProgress, [0, 1], [50, -150]);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -59,7 +67,7 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" style={{
+    <section ref={sectionRef} id="experience" style={{
       padding: 'clamp(5rem, 15vw, 12rem) clamp(1.5rem, 5vw, 4rem)',
       maxWidth: '1440px',
       margin: '0 auto',
@@ -69,7 +77,7 @@ export default function Experience() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, amount: 0.5 }}
         style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}
       >
         <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Experience</span>
@@ -78,7 +86,7 @@ export default function Experience() {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, amount: 0.1 }}
         variants={containerVariants}
         style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '4rem' : '8rem' }}
       >
@@ -95,7 +103,7 @@ export default function Experience() {
           >
             {/* Number Background */}
             {!isMobile && (
-              <span style={{
+              <motion.span style={{
                 position: 'absolute',
                 top: '-3rem',
                 left: '-1rem',
@@ -104,7 +112,8 @@ export default function Experience() {
                 color: 'transparent',
                 WebkitTextStroke: '1px var(--border)',
                 zIndex: 0,
-              }}>0{i + 3}</span>
+                y: yParallax
+              }}>0{i + 3}</motion.span>
             )}
 
             <div style={{ position: 'relative', zIndex: 1 }}>
