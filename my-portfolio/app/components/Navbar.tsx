@@ -193,13 +193,13 @@ export default function Navbar() {
               transition={{ delay: 0.6 }}
               style={{ paddingBottom: '2rem' }}
             >
-              <a href="mailto:hello@aliqadri.com" style={{
+              <a href="mailto:designwithsyed@gmail.com" style={{
                 color: 'var(--text-secondary)',
                 fontFamily: 'var(--font-mono)',
                 fontSize: '0.9rem',
                 textDecoration: 'none'
               }}>
-                hello@aliqadri.com
+                designwithsyed@gmail.com
               </a>
             </motion.div>
           </motion.div>

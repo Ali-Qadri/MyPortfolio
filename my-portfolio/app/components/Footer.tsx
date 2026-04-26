@@ -95,7 +95,7 @@ export default function Footer() {
           <div>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '2rem' }}>Send an inquiry</p>
             <motion.a 
-              href="mailto:hello@aliqadri.com"
+              href="mailto:designwithsyed@gmail.com"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -121,7 +121,7 @@ export default function Footer() {
                 e.currentTarget.style.borderColor = 'var(--border)';
               }}
             >
-              hello@aliqadri.com
+              designwithsyed@gmail.com
             </motion.a>
           </div>
         </div>
