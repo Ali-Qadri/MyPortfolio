@@ -26,7 +26,7 @@ export default function Playground() {
         viewport={{ once: true, amount: 0.1 }}
       >
         <h2 style={{
-          fontSize: 'clamp(2.8rem, 6vw, 4rem)',
+          fontSize: 'clamp(3rem, 6vw, 5rem)',
           color: '#fff',
           fontFamily: 'var(--font-heading)',
           fontWeight: 300,
@@ -52,7 +52,7 @@ export default function Playground() {
           paddingBottom: '56.25%', // 16:9 aspect ratio
           height: 0,
           overflow: 'hidden',
-          borderRadius: '4px',
+          borderRadius: '2px',
           border: '1px solid var(--border)',
           backgroundColor: '#111',
         }}>

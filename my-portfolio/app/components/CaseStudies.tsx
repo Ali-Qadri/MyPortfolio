@@ -90,7 +90,7 @@ export default function CaseStudies() {
 
   return (
     <section id="work" style={{
-      padding: 'clamp(5rem, 15vw, 12rem) clamp(1.5rem, 5vw, 4rem)',
+      padding: 'clamp(3rem, 10vw, 12rem) clamp(1.5rem, 5vw, 4rem)',
       width: '100%',
       maxWidth: '1440px',
       margin: '0 auto',

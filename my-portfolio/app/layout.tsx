@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/app/components/Navbar';
-import Preloader from '@/app/components/Preloader';
+
 import Cursor from '@/app/components/Cursor';
 
 export const metadata: Metadata = {
@@ -18,7 +18,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <Cursor />
-        {/* <Preloader /> */}
         <Navbar />
         {children}
       </body>
