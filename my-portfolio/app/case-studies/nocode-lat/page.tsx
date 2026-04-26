@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from 'next/navigation';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Footer from '@/app/components/Footer';
 
 export default function NocodeLatCaseStudy() {
@@ -64,8 +64,16 @@ export default function NocodeLatCaseStudy() {
 }
 
 function ContentRow({ label, content }: { label: string; content: string }) {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   return (
-    <div style={{ marginBottom: '4rem', display: 'grid', gridTemplateColumns: '160px 1fr', gap: '2rem' }}>
+    <div style={{ marginBottom: '4rem', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '160px 1fr', gap: isMobile ? '0.5rem' : '2rem' }}>
       <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.65rem', color: '#949494', letterSpacing: '0.15em', textTransform: 'uppercase', paddingTop: '4px' }}>
         {label}
       </p>
@@ -81,6 +89,14 @@ function ImageCarousel() {
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   const onMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true;
@@ -138,7 +154,7 @@ function ImageCarousel() {
         } as React.CSSProperties}
       >
         {images.map((img, i) => (
-          <div key={i} style={{ flexShrink: 0, width: '480px' }}>
+          <div key={i} style={{ flexShrink: 0, width: isMobile ? '80vw' : '480px' }}>
             <img
               src={img.src}
               alt={img.label}

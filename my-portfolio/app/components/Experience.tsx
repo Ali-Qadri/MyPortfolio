@@ -74,7 +74,7 @@ export default function Experience() {
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
-        style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}
+        style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '4rem' : '8rem' }}
       >
         {experiences.map((exp, i) => (
           <motion.div

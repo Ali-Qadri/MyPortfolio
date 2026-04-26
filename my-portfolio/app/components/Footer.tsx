@@ -5,9 +5,14 @@ import { motion, useScroll, useTransform, useSpring, useVelocity, useAnimationFr
 export default function Footer() {
   const [mounted, setMounted] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    setIsMobile(window.innerWidth < 768);
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
   return (
@@ -50,7 +55,7 @@ export default function Footer() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                height: '240px',
+                height: isMobile ? '180px' : '240px',
                 textDecoration: 'none',
                 transition: 'all 0.3s ease',
               }}
@@ -82,7 +87,7 @@ export default function Footer() {
           <h2 style={{
             fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
             maxWidth: '600px',
-            marginBottom: '6rem',
+            marginBottom: isMobile ? '3rem' : '6rem',
             lineHeight: 1.1,
             color: '#fff',
             fontFamily: 'var(--font-body)',
@@ -128,8 +133,10 @@ export default function Footer() {
         paddingTop: '3rem',
         borderTop: '1px solid var(--border)',
         display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
+        gap: isMobile ? '1rem' : '0',
         justifyContent: 'space-between',
-        alignItems: 'center',
+        alignItems: isMobile ? 'flex-start' : 'center',
       }}>
         <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
           © 2026 Ali Qadri / Portfolio

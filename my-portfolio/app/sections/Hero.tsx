@@ -6,6 +6,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 export default function Hero() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Magnetic Button Logic
   const mouseX = useMotionValue(0);
@@ -16,6 +17,10 @@ export default function Hero() {
 
   useEffect(() => {
     setMounted(true);
+    setIsMobile(window.innerWidth < 768);
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -113,8 +118,8 @@ export default function Hero() {
       <div style={{ padding: 'clamp(5rem, 15vw, 12rem) clamp(1.5rem, 5vw, 4rem)', background: '#000' }}>
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 0.8fr)',
-          gap: '4rem',
+          gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1.2fr) minmax(0, 0.8fr)',
+          gap: isMobile ? '2rem' : '4rem',
           alignItems: 'end',
           width: '100%',
           maxWidth: '1440px',
@@ -154,7 +159,7 @@ export default function Hero() {
               lineHeight: 1.6,
               color: 'var(--text-secondary)',
               maxWidth: '420px',
-              marginBottom: '4rem',
+              marginBottom: isMobile ? '2rem' : '4rem',
             }}>
               I am a web designer and developer focused on creating clean and responsive websites.
             </p>

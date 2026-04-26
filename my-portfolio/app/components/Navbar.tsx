@@ -4,11 +4,20 @@ import GlitchText from '@/app/effects/GlitchText';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', onResize);
+
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onResize);
+    };
   }, []);
 
   return (
@@ -41,7 +50,7 @@ export default function Navbar() {
       </div>
 
       {/* Center: Detail (Desktop) */}
-      {!scrolled && (
+      {!scrolled && !isMobile && (
         <div style={{
           fontFamily: 'var(--font-mono)',
           fontSize: '0.65rem',
@@ -54,7 +63,7 @@ export default function Navbar() {
       )}
 
       {/* Right side: Nav Links */}
-      <div style={{ display: 'flex', gap: '3rem' }}>
+      <div style={{ display: 'flex', gap: isMobile ? '1rem' : '3rem' }}>
         {[
           { label: 'Work', href: '#work' },
           { label: 'About', href: '#about' },

@@ -1,6 +1,15 @@
 'use client';
+import { useState, useEffect } from 'react';
 
 export default function AboutMe() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
   const resume = {
     education: [
       { degree: 'Bachelors in Computer Science', institution: 'Iqra University', period: '2023 - 2027' },
@@ -24,7 +33,7 @@ export default function AboutMe() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '12rem',
+        gap: isMobile ? '6rem' : '12rem',
       }}>
         {/* Left Column: Education */}
         <div>
@@ -73,7 +82,7 @@ export default function AboutMe() {
             <h2 style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', position: 'relative', zIndex: 1, color: '#fff' }}>Expertise</h2>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '4rem' }}>
             <div>
               <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '2rem', letterSpacing: '0.1em' }}>Core Expertise</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
