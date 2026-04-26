@@ -62,10 +62,9 @@ export default function Footer() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1rem' }}>Socials</p>
             {[
-              { label: 'Instagram', href: '#' },
-              { label: 'Behance', href: '#' },
+              { label: 'Instagram', href: 'https://www.instagram.com/itsali.design/' },
+              { label: 'LinkedIn', href: 'https://www.linkedin.com/in/itsaliqadri/' },
               { label: 'Github', href: 'https://github.com/Ali-Qadri' },
-              { label: 'LinkedIn', href: '#' },
             ].map((social, i) => (
               <motion.a 
                 key={social.label}
