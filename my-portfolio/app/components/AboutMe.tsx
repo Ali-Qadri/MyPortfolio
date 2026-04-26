@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function AboutMe() {
   const [isMobile, setIsMobile] = useState(false);
@@ -36,7 +37,12 @@ export default function AboutMe() {
         gap: isMobile ? '6rem' : '12rem',
       }}>
         {/* Left Column: Education */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <div style={{ position: 'relative', marginBottom: '6rem' }}>
             <span style={{
               fontSize: 'clamp(8rem, 15vw, 15rem)',
@@ -62,10 +68,15 @@ export default function AboutMe() {
               </div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* Right Column: Expertise & Skills */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
           <div style={{ position: 'relative', marginBottom: '6rem' }}>
             <span style={{
               fontSize: 'clamp(8rem, 15vw, 15rem)',
@@ -108,7 +119,7 @@ export default function AboutMe() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

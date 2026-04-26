@@ -16,136 +16,136 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer style={{
-      padding: 'clamp(5rem, 15vw, 12rem) clamp(1.5rem, 5vw, 4rem) 6rem',
-      maxWidth: '1440px',
-      margin: '0 auto',
-      width: '100%',
-      background: '#000000',
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '8rem' }}>
-        <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Contact</span>
+    <motion.footer 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-100px" }}
+      style={{
+        padding: '8rem 0 4rem 0',
+        width: '100%',
+        background: '#000000',
+        overflow: 'hidden'
+      }}
+    >
+      {/* Marquee Header */}
+      <div style={{ marginBottom: '8rem' }}>
+        <Marquee baseVelocity={-2}>
+          <h2 style={{
+            fontSize: 'clamp(5rem, 15vw, 12rem)',
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 300,
+            color: '#fff',
+            textTransform: 'uppercase',
+            marginRight: '3rem',
+            lineHeight: 1
+          }}>
+            Let's work together <span style={{ color: 'var(--text-muted)', fontStyle: 'italic' }}>—</span> 
+          </h2>
+        </Marquee>
       </div>
 
       <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: '4rem',
-        alignItems: 'start',
+        maxWidth: '1440px',
+        margin: '0 auto',
+        padding: '0 clamp(1.5rem, 5vw, 4rem)',
       }}>
-        {/* Social Grid */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '1rem',
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: 'space-between',
+          alignItems: isMobile ? 'flex-start' : 'flex-end',
+          gap: '4rem',
+          marginBottom: '8rem'
         }}>
-          {[
-            { label: 'Instagram', icon: '📸', href: '#' },
-            { label: 'Behance', icon: '🎨', href: '#' },
-            { label: 'Github', icon: '💻', href: 'https://github.com/Ali-Qadri' },
-            { label: 'LinkedIn', icon: '👔', href: '#' },
-          ].map(social => (
-            <a
-              key={social.label}
-              href={social.href}
+          {/* Socials */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1rem' }}>Socials</p>
+            {[
+              { label: 'Instagram', href: '#' },
+              { label: 'Behance', href: '#' },
+              { label: 'Github', href: 'https://github.com/Ali-Qadri' },
+              { label: 'LinkedIn', href: '#' },
+            ].map((social, i) => (
+              <motion.a 
+                key={social.label}
+                href={social.href}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+                style={{
+                  color: 'var(--text-primary)',
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '1.2rem',
+                  textDecoration: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '1rem',
+                  transition: 'color 0.3s ease'
+                }}
+                onMouseEnter={e => e.currentTarget.style.color = 'var(--text-muted)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'var(--text-primary)'}
+              >
+                <span style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>↗</span> {social.label}
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Contact */}
+          <div>
+            <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '2rem' }}>Send an inquiry</p>
+            <motion.a 
+              href="mailto:hello@aliqadri.com"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
               style={{
-                background: '#080808',
-                border: '1px solid var(--border)',
-                padding: '2.5rem',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                height: isMobile ? '180px' : '240px',
+                fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+                color: '#fff',
                 textDecoration: 'none',
-                transition: 'all 0.3s ease',
+                fontFamily: 'var(--font-heading)',
+                fontStyle: 'italic',
+                fontWeight: 300,
+                borderBottom: '1px solid var(--border)',
+                paddingBottom: '0.5rem',
+                display: 'inline-block',
+                transition: 'border-color 0.3s ease, color 0.3s ease'
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.background = '#111';
-                e.currentTarget.style.borderColor = 'var(--accent)';
+                e.currentTarget.style.color = 'var(--text-muted)';
+                e.currentTarget.style.borderColor = 'var(--text-muted)';
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.background = '#080808';
+                e.currentTarget.style.color = '#fff';
                 e.currentTarget.style.borderColor = 'var(--border)';
               }}
             >
-              <span style={{ fontSize: '1.5rem', opacity: 0.5 }}>{social.icon}</span>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-mono)', fontSize: '0.8rem' }}>/</span>
-                <span style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '1rem',
-                  color: 'var(--text-primary)',
-                  fontWeight: 500
-                }}>{social.label}</span>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        {/* Contact Info */}
-        <div style={{ padding: '1rem' }}>
-          <h2 style={{
-            fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
-            maxWidth: '600px',
-            marginBottom: isMobile ? '3rem' : '6rem',
-            lineHeight: 1.1,
-            color: '#fff',
-            fontFamily: 'var(--font-body)',
-            fontWeight: 500,
-          }}>
-            Have a project in mind?<br />
-            <span style={{ fontStyle: 'italic', fontFamily: 'var(--font-heading)', color: 'var(--accent)', fontWeight: 400 }}>Let's build it together.</span>
-          </h2>
-
-          <div>
-            <p style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: '0.7rem',
-              color: 'var(--text-muted)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.2em',
-              marginBottom: '2rem'
-            }}>Send an inquiry</p>
-            <a href="mailto:hello@aliqadri.com" style={{
-              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
-              color: '#fff',
-              textDecoration: 'none',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1.5rem',
-              fontFamily: 'var(--font-heading)',
-              fontStyle: 'italic',
-              transition: 'transform 0.3s cubic-bezier(0.23, 1, 0.32, 1)'
-            }}
-              onMouseEnter={e => e.currentTarget.style.transform = 'translateX(20px)'}
-              onMouseLeave={e => e.currentTarget.style.transform = 'none'}
-            >
               hello@aliqadri.com
-              <span style={{ fontSize: '2rem', color: 'var(--accent)', transition: 'transform 0.3s' }}>→</span>
-            </a>
+            </motion.a>
           </div>
         </div>
-      </div>
 
-      {/* Credit Footer */}
-      <div style={{
-        marginTop: '12rem',
-        paddingTop: '3rem',
-        borderTop: '1px solid var(--border)',
-        display: 'flex',
-        flexDirection: isMobile ? 'column' : 'row',
-        gap: isMobile ? '1rem' : '0',
-        justifyContent: 'space-between',
-        alignItems: isMobile ? 'flex-start' : 'center',
-      }}>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-          © 2026 Ali Qadri / Portfolio
-        </p>
-        <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-          KHI // 24.8607° N, 67.0011° E
-        </p>
+        {/* Credit Footer */}
+        <div style={{
+          paddingTop: '2rem',
+          borderTop: '1px solid var(--border)',
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          gap: isMobile ? '1rem' : '0',
+          justifyContent: 'space-between',
+          alignItems: isMobile ? 'flex-start' : 'center',
+        }}>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            © 2026 Ali Qadri / Portfolio
+          </p>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+            KHI // 24.8607° N, 67.0011° E
+          </p>
+        </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }
 
