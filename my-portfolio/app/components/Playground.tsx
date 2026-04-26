@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 export default function Playground() {
   return (
     <section id="playground" style={{
-      padding: 'clamp(5rem, 15vw, 12rem) clamp(1.5rem, 5vw, 4rem)',
+      padding: 'clamp(3rem, 10vw, 12rem) clamp(1.5rem, 5vw, 4rem)',
       maxWidth: '1440px',
       margin: '0 auto',
       background: '#000000',
@@ -14,7 +14,7 @@ export default function Playground() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, amount: 0.5 }}
-        style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '4rem' }}
+        style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}
       >
         <span style={{ color: 'var(--accent)', fontFamily: 'var(--font-body)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.2rem' }}>// Playground</span>
       </motion.div>
@@ -26,7 +26,7 @@ export default function Playground() {
         viewport={{ once: true, amount: 0.1 }}
       >
         <h2 style={{
-          fontSize: 'clamp(2rem, 5vw, 4rem)',
+          fontSize: 'clamp(2.8rem, 6vw, 4rem)',
           color: '#fff',
           fontFamily: 'var(--font-heading)',
           fontWeight: 300,
@@ -40,7 +40,7 @@ export default function Playground() {
           fontFamily: 'var(--font-body)',
           fontSize: '1.1rem',
           maxWidth: '800px',
-          marginBottom: '3rem',
+          marginBottom: '2rem',
           lineHeight: 1.6,
         }}>
           Explore my other designs! These are design exercises I practice in my free time to hone my skills, experiment with layouts, and stay creatively sharp.

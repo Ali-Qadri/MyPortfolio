@@ -85,7 +85,7 @@ export default function Hero() {
       }}>
         <motion.div style={{
           position: 'absolute',
-          top: '50%',
+          top: isMobile ? '35%' : '50%',
           left: '5%',
           transform: 'translateY(-50%)',
           overflow: 'hidden', // The Mask
@@ -97,7 +97,7 @@ export default function Hero() {
             animate={mounted ? { y: 0 } : { y: "100%" }}
             transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1], delay: 0.2 }}
             style={{
-              fontSize: 'clamp(2.5rem, 8vw, 9rem)',
+              fontSize: 'clamp(3.5rem, 10vw, 9rem)',
               lineHeight: 1,
               color: 'var(--text-primary)',
               letterSpacing: '-0.02em',
@@ -176,7 +176,7 @@ export default function Hero() {
       </div>
 
       {/* Intro Section (Previously Sticky) */}
-      <div style={{ padding: 'clamp(5rem, 15vw, 12rem) clamp(1.5rem, 5vw, 4rem)', background: '#000' }}>
+      <div style={{ padding: 'clamp(3rem, 10vw, 12rem) clamp(1.5rem, 5vw, 4rem)', background: '#000' }}>
         <div style={{
           display: 'grid',
           gridTemplateColumns: isMobile ? '1fr' : 'minmax(0, 1.2fr) minmax(0, 0.8fr)',
@@ -203,7 +203,7 @@ export default function Hero() {
               // Intro
             </p>
             <h2 style={{
-              fontSize: 'clamp(2.5rem, 4.5vw, 5rem)',
+              fontSize: 'clamp(3rem, 6vw, 5rem)',
               lineHeight: 1.1,
               color: '#fff',
               maxWidth: '950px',
