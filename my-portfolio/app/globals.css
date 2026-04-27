@@ -5,7 +5,7 @@
   --foreground: #ffffff;
   --font-heading: 'Satoshi', sans-serif;
   --font-body: 'Satoshi', sans-serif;
-  --font-mono: 'DM Mono', monospace; 
+  --font-mono: 'Satoshi', sans-serif; 
   --accent: #ffffff; 
   --border: rgba(255, 255, 255, 0.12);
   --text-primary: #ffffff;
@@ -60,6 +60,8 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
   font-weight: 300; /* Light weight for editorial feel */
 }
+
+
 
 p {
   letter-spacing: -0.01em;
