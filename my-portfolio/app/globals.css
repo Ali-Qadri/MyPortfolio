@@ -5,7 +5,7 @@
   --foreground: #ffffff;
   --font-heading: 'Satoshi', sans-serif;
   --font-body: 'Satoshi', sans-serif;
-  --font-mono: var(--font-mono); 
+  --font-mono: 'DM Mono', monospace; 
   --accent: #ffffff; 
   --border: rgba(255, 255, 255, 0.12);
   --text-primary: #ffffff;
