@@ -59,7 +59,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
             }}
           />
           <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.95, x: '-50%', y: '-50%' }}
+            initial={{ opacity: 0, scale: 0.95, x: '-50%', y: '-45%' }}
             animate={{ opacity: 1, y: '-50%', scale: 1, x: '-50%' }}
             exit={{ opacity: 0, scale: 0.95, y: '-40%', x: '-50%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
@@ -69,8 +69,9 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
               left: '50%',
               width: '90%',
               maxWidth: '500px',
-              background: '#0a0a0a',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
+              background: '#000000',
+              border: '1px solid var(--border)',
+              borderRadius: '2px',
               padding: '3rem',
               zIndex: 10000,
               display: 'flex',
@@ -81,7 +82,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h3 style={{
                 fontFamily: 'var(--font-heading)',
-                fontSize: '2.5rem',
+                fontSize: '3rem',
                 color: '#fff',
                 fontWeight: 300,
                 margin: 0,
@@ -137,7 +138,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
                     style={{
                       background: 'transparent',
                       border: 'none',
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderBottom: '1px solid var(--border)',
                       padding: '0.5rem 0',
                       color: '#fff',
                       fontFamily: 'var(--font-body)',
@@ -146,7 +147,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
                       transition: 'border-color 0.3s ease'
                     }}
                     onFocus={e => e.target.style.borderColor = 'var(--accent)'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)'}
+                    onBlur={e => e.target.style.borderColor = 'var(--border)'}
                   />
                 </div>
 
@@ -161,7 +162,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
                     style={{
                       background: 'transparent',
                       border: 'none',
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderBottom: '1px solid var(--border)',
                       padding: '0.5rem 0',
                       color: '#fff',
                       fontFamily: 'var(--font-body)',
@@ -170,7 +171,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
                       transition: 'border-color 0.3s ease'
                     }}
                     onFocus={e => e.target.style.borderColor = 'var(--accent)'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)'}
+                    onBlur={e => e.target.style.borderColor = 'var(--border)'}
                   />
                 </div>
 
@@ -185,7 +186,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
                     style={{
                       background: 'transparent',
                       border: 'none',
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+                      borderBottom: '1px solid var(--border)',
                       padding: '0.5rem 0',
                       color: '#fff',
                       fontFamily: 'var(--font-body)',
@@ -195,7 +196,7 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
                       transition: 'border-color 0.3s ease'
                     }}
                     onFocus={e => e.target.style.borderColor = 'var(--accent)'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)'}
+                    onBlur={e => e.target.style.borderColor = 'var(--border)'}
                   />
                 </div>
 
@@ -212,30 +213,32 @@ export default function ContactPopup({ isOpen, onClose }: { isOpen: boolean; onC
                   disabled={status === 'submitting'}
                   style={{
                     marginTop: '1rem',
-                    padding: '1rem 2rem',
-                    background: '#fff',
-                    color: '#000',
-                    border: 'none',
+                    padding: '1.2rem 3rem',
+                    background: 'transparent',
+                    color: '#fff',
+                    border: '1px solid var(--border)',
+                    borderRadius: '100px',
                     fontFamily: 'var(--font-mono)',
                     fontSize: '0.8rem',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
+                    letterSpacing: '0.15em',
                     cursor: status === 'submitting' ? 'wait' : 'pointer',
-                    transition: 'background 0.3s ease, color 0.3s ease',
-                    opacity: status === 'submitting' ? 0.7 : 1
+                    transition: 'background 0.4s ease, color 0.4s ease, border-color 0.4s ease',
+                    opacity: status === 'submitting' ? 0.7 : 1,
+                    display: 'inline-block'
                   }}
                   onMouseEnter={e => {
                     if (status !== 'submitting') {
-                      e.currentTarget.style.background = 'transparent';
-                      e.currentTarget.style.color = '#fff';
-                      e.currentTarget.style.boxShadow = 'inset 0 0 0 1px #fff';
+                      e.currentTarget.style.background = '#fff';
+                      e.currentTarget.style.color = '#000';
+                      e.currentTarget.style.borderColor = '#fff';
                     }
                   }}
                   onMouseLeave={e => {
                     if (status !== 'submitting') {
-                      e.currentTarget.style.background = '#fff';
-                      e.currentTarget.style.color = '#000';
-                      e.currentTarget.style.boxShadow = 'none';
+                      e.currentTarget.style.background = 'transparent';
+                      e.currentTarget.style.color = '#fff';
+                      e.currentTarget.style.borderColor = 'var(--border)';
                     }
                   }}
                 >
