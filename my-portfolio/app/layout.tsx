@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/app/components/Navbar';
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import Cursor from '@/app/components/Cursor';
 
@@ -20,6 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Cursor />
         <Navbar />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

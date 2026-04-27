@@ -78,16 +78,16 @@ export default function Hero() {
       {/* Visual Header */}
       <div style={{
         width: '100%',
-        height: '100vh',
+        height: '75vh',
         position: 'relative',
         overflow: 'hidden',
         background: '#000000',
       }}>
         <motion.div style={{
           position: 'absolute',
-          top: isMobile ? '35%' : '50%',
-          left: '5%',
-          transform: 'translateY(-50%)',
+          top: isMobile ? '8%' : '10%',
+          left: 'clamp(1.5rem, 5vw, 4rem)',
+          transform: 'translateY(0)', 
           overflow: 'hidden', // The Mask
           zIndex: 1,
           y: yParallax
@@ -149,7 +149,7 @@ export default function Hero() {
         <div style={{
           position: 'absolute',
           bottom: '4rem',
-          right: '5%',
+          right: 'clamp(1.5rem, 5vw, 4rem)',
           textAlign: 'right',
           zIndex: 2,
         }}>
