@@ -95,7 +95,7 @@ export default function Hero() {
           <motion.h1
             initial={{ y: "100%" }}
             animate={mounted ? { y: 0 } : { y: "100%" }}
-            transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1], delay: 0.2 }}
+            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1], delay: 0 }}
             style={{
               fontSize: 'clamp(3.5rem, 10vw, 9rem)',
               lineHeight: 1,
@@ -115,7 +115,7 @@ export default function Hero() {
               onMouseLeave={handleMouseLeave2}
               initial={{ y: "100%" }}
               animate={mounted ? { y: 0 } : { y: "100%" }}
-              transition={{ duration: 1.2, ease: [0.23, 1, 0.32, 1], delay: 0.4 }}
+              transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1], delay: 0.2 }}
               style={{
                 x: x2, y: y2,
                 padding: '1.2rem 3rem',
