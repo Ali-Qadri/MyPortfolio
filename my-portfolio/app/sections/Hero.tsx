@@ -85,7 +85,7 @@ export default function Hero() {
       }}>
         <motion.div style={{
           position: 'absolute',
-          top: isMobile ? '15%' : '20%',
+          top: isMobile ? '25%' : '30%',
           left: 'clamp(1.5rem, 5vw, 4rem)',
           transform: 'translateY(0)', 
           overflow: 'hidden', // The Mask

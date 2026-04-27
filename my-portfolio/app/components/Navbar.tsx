@@ -30,9 +30,9 @@ export default function Navbar() {
       right: 0,
       zIndex: 100,
       transition: 'all 0.5s cubic-bezier(0.23, 1, 0.32, 1)',
-      background: scrolled ? 'rgba(0,0,0,0.9)' : 'transparent',
-      backdropFilter: scrolled ? 'blur(20px)' : 'none',
-      borderBottom: scrolled ? '1px solid var(--border)' : '1px solid transparent',
+      background: scrolled ? 'rgba(0, 0, 0, 0.4)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(12px) saturate(180%)' : 'none',
+      borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid transparent',
     }}>
       <div style={{
         maxWidth: '1440px',

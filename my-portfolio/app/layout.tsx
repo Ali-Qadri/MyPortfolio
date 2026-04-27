@@ -3,6 +3,7 @@ import './globals.css';
 import Navbar from '@/app/components/Navbar';
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import SmoothScroll from '@/app/components/SmoothScroll';
 
 import Cursor from '@/app/components/Cursor';
 
@@ -19,9 +20,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
       </head>
       <body>
-        <Cursor />
-        <Navbar />
-        {children}
+        <SmoothScroll>
+          <Cursor />
+          <Navbar />
+          {children}
+        </SmoothScroll>
         <Analytics />
         <SpeedInsights />
       </body>
